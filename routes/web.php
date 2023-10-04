@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('admin/dashboard', 'App\Http\Controllers\Admin\AdminController@dashboard');
+// Route::get('admin/dashboard', 'App\Http\Controllers\Admin\AdminController@dashboard');
+
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,3 +34,13 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function(){
+
+    //Admin Login Route
+    Route::match(['get', 'post'],'login', 'AdminController@login');
+
+    //Admin Dashboard Route
+    Route::get('dashboard', 'AdminController@dashboard');
+    });
