@@ -36,6 +36,10 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
+
+
+
+
 Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function(){
 
     //Admin Login Route
