@@ -33,6 +33,20 @@
                                     </button>
                                   </div>
                                 @endif
+
+                                @if ($errors->any())
+                                <div class="alert alert-danger alert-dismissible fade show pb-0" role="alert">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                @endif
+
                                 <form class="pt-3" action="{{ url('admin/login') }}" method="POST">@csrf
                                     <div class="form-group">
                                         <input type="email" name="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username">
