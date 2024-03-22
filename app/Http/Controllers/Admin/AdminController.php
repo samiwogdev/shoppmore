@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Auth;
+use Hash;
 
 class AdminController extends Controller
 {
@@ -14,12 +15,22 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
 
-    public function updateAdminPassword(){
+    public function updateAdminPassword()
+    {
         // echo'<pre>'; print_r(Auth::guard('admin')->user()->email); exit; // get complete data
         $adminDetails = Admin::where('email', Auth::guard('admin')->user()->email)->first()->toArray();
         // return view('admin.settings.update_admin_password', compact('adminDetails'))->with(compact('adminDetails'));
 
         return view('admin.settings.update_admin_password', compact('adminDetails'));
+    }
+
+    public function checkAdminPassword(Request $request){
+        $data = $request->all();
+        if(Hash::check($data['currentPassword'], Auth::guard('admin')->user()->password)){
+             return 'true';
+        }else{
+            return 'false';
+        }
     }
 
     public function login(Request $request)
@@ -33,14 +44,14 @@ class AdminController extends Controller
             // ]);
 
             $rules = [
-                'email'=> 'required|email|max:225',
-                'password'=> 'required'
+                'email' => 'required|email|max:225',
+                'password' => 'required'
             ];
 
             $customMessage = [
-                'email.required'=> 'Email is required',
+                'email.required' => 'Email is required',
                 'email.email' => 'Valid Email is required',
-                'password.required'=> ' Password is required'
+                'password.required' => ' Password is required'
             ];
 
             $this->validate($request, $rules, $customMessage);
@@ -53,7 +64,8 @@ class AdminController extends Controller
         return view('admin.login');
     }
 
-    public function logout(){
+    public function logout()
+    {
         Auth::guard('admin')->logout();
         return redirect('admin/logout');
     }

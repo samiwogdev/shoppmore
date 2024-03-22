@@ -43,14 +43,15 @@
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Current Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <input type="password" class="form-control" id="currentPassword" placeholder="Password">
+                <p id="currentPassordMsg"></p>
               </div>
               <div class="form-group">
-                <label for="exampleInputConfirmPassword1">New Password</label>
-                <input type="password" class="form-control" id="exampleInputConfirmPassword1" placeholder="Password">
+                <label for="new ConfirmPassword">New Password</label>
+                <input type="password" class="form-control" id="newPassword" placeholder="Password">
               </div>
               <div class="form-group">
-                <label for="exampleInputConfirmPassword1">Confirm Password</label>
+                <label for="ConfirmPassword">Confirm Password</label>
                 <input type="password" class="form-control" id="exampleInputConfirmPassword1" placeholder="Password">
               </div>
               <div class="form-check form-check-flat form-check-primary">
